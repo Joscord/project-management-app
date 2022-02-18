@@ -1,6 +1,7 @@
 import templeLogo from '../../assets/temple.svg';
 import { Link } from 'react-router-dom';
 import React from 'react';
+import './Navbar.css';
 
 const Navbar = () => {
 	return (
