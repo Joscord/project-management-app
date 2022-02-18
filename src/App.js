@@ -11,11 +11,13 @@ import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
 import Navbar from './components/navbar/Navbar';
 import './App.css';
+import Sidebar from './components/sidebar/Sidebar';
 
 const App = () => {
 	return (
 		<div className='App'>
 			<BrowserRouter>
+			<Sidebar/>
 				<div className='container'>
 					<Navbar />
 					<Switch>
