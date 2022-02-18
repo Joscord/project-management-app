@@ -3,11 +3,12 @@ import {
 	Switch,
 	Route,
 } from 'react-router-dom/cjs/react-router-dom.min';
-import { Dashboard } from './pages/dashboard/Dashboard';
-import { Create } from './pages/create/Create';
-import { Login } from './pages/login/Login';
-import { Signup } from './pages/signup/Signup';
-import { Project } from './pages/project/Project';
+
+import Dashboard from './pages/dashboard/Dashboard';
+import Create from './pages/create/Create';
+import Project from './pages/project/Project';
+import Login from './pages/login/Login';
+import Signup from './pages/signup/Signup';
 
 import './App.css';
 
