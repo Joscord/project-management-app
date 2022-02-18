@@ -9,14 +9,15 @@ import Create from './pages/create/Create';
 import Project from './pages/project/Project';
 import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
-
+import Navbar from './components/navbar/Navbar';
 import './App.css';
 
 const App = () => {
 	return (
-		<div>
+		<div className='App'>
 			<BrowserRouter>
 				<div className='container'>
+					<Navbar />
 					<Switch>
 						<Route exact path='/'>
 							<Dashboard />
