@@ -1,9 +1,13 @@
-import templeLogo from '../../assets/temple.svg';
-import { Link } from 'react-router-dom';
 import React from 'react';
+import { Link } from 'react-router-dom';
+import useLogout from '../../hooks/useLogout';
+import templeLogo from '../../assets/temple.svg';
 import './Navbar.css';
 
 const Navbar = () => {
+	// Destructuramos la función de logout y demases de nuestro hook
+	const { logout, isPending } = useLogout();
+
 	return (
 		<div className='navbar'>
 			<ul>
@@ -18,7 +22,7 @@ const Navbar = () => {
 					<Link to={'/signup'}>Signup</Link>
 				</li>
 				<li>
-					<button className='btn'>Logout </button>
+					{isPending ? <button className='btn' disabled>Logging out...</button> : <button className='btn' onClick={logout}>Logout </button>}
 				</li>
 			</ul>
 		</div>
