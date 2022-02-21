@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import useLogout from '../../hooks/useLogout';
+import { useLogout } from '../../hooks/useLogout';
 import templeLogo from '../../assets/temple.svg';
 import './Navbar.css';
 
