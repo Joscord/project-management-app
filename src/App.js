@@ -38,10 +38,10 @@ const App = () => {
 								{user ? <Project /> : <Redirect to={'/login'}/>}
 							</Route>
 							<Route path='/login'>
-								{!user ? <Login /> : <Redirect to={'/dashboard'}/>}
+								{!user ? <Login /> : <Redirect to={'/'}/>}
 							</Route>
 							<Route path='/signup'>
-								{!user ? <Signup /> : <Redirect to={'/dashboard'}/>}
+								{!user ? <Signup /> : <Redirect to={'/'}/>}
 							</Route>
 						</Switch>
 					</div>
