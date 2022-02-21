@@ -33,7 +33,7 @@ const Signup = () => {
 			setThumbnailError('Please select a file');
 			return;
 		}
-		if (!selectedFile.type.includes('images')) {
+		if (!selectedFile.type.includes('image')) {
 			setThumbnailError('Selected file must be an image');
 			return;
 		}
