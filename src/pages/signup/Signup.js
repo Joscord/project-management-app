@@ -11,7 +11,7 @@ const Signup = () => {
 	const [passwordError, setPasswordError] = useState(null);
 	const [thumbnail, setThumbnail] = useState(null);
 	const [thumbnailError, setThumbnailError] = useState(null);
-	// Destructuramos de useSignup
+
 	const { signup, error, isPending } = useSignup();
 
 	const handleSubmit = e => {
@@ -22,7 +22,6 @@ const Signup = () => {
 			return;
 		}
 
-		// Invocamos al método signup
 		signup(email, password, name, thumbnail);
 	};
 
