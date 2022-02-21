@@ -13,10 +13,8 @@ export const useLogin = () => {
     setIsPending(true)
   
     try {
-      // login
       const res = await projectAuth.signInWithEmailAndPassword(email, password)
 
-      // dispatch login action
       dispatch({ type: 'LOGIN', payload: res.user })
 
       if (!isCancelled) {
