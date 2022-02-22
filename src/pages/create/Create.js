@@ -1,9 +1,23 @@
+import React, { useState } from 'react';
+import Select from 'react-select';
 import './Create.css';
 
-import React, { useState } from 'react';
-
+// Los tag de <option value='lorem' label 'lorem'> lucen así. CUando usamos select creamos un arreglo con las opciones, un arreglo de objetos, con las propiedades value y label. Luego simplemente pasamos este arreglo. También hay una diferencia en la función que maneja el estado ya que no recibe el evento como parámetro sino que la opción seleccionada.
+const categories = [
+	{
+		value: 'development', label: 'Development'
+	},
+	{
+		value: 'design', label: 'Design'
+	},
+	{
+		value: 'sales', label: 'Sales'
+	},
+	{
+		value: 'marketing', label: 'Marketing'
+	}
+]
 const Create = () => {
-	// Creamos 5 piezas diferentes de estado que manejarán los 5 campos a llenar del formulario
 	const [name, setName] = useState('');
 	const [details, setDetails] = useState('');
 	const [dueDate, setDueDate] = useState('');
@@ -32,6 +46,10 @@ const Create = () => {
 			</label>
 			<label>
 				<span>Project Category:</span>
+				<Select 
+					onChange={option => setCategory(option)}
+					options={categories}
+				/>
 			</label>
 			<label>
 				<span>Assigned To:</span>
