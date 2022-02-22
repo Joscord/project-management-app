@@ -1,9 +1,20 @@
+import React from 'react';
+import { useCollection } from '../../hooks/useCollection';
 import './Dashboard.css';
 
-import React from 'react';
-
 const Dashboard = () => {
-	return <div>Dashboard</div>;
+	// Destructuramos la colección de useCollection
+	const { documents: projects, error } = useCollection('projects');
+
+	return (
+		<div>
+			<h2 className='page-title'></h2>
+			{error && <p className='error'>{error}</p>}
+			{projects && projects.map(project => (
+				<p key={project.id}>{project.name}</p>
+			))}
+		</div>
+	);
 };
 
 export default Dashboard;
