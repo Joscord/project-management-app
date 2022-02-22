@@ -1,4 +1,3 @@
-// Importamos el componente Redirect
 import {
 	BrowserRouter,
 	Switch,
@@ -14,6 +13,7 @@ import Signup from './pages/signup/Signup';
 import Navbar from './components/navbar/Navbar';
 import './App.css';
 import Sidebar from './components/sidebar/Sidebar';
+import OnlineUsers from './components/onlineusers/OnlineUsers';
 import { useAuthContext } from './hooks/useAuthContext';
 
 const App = () => {
@@ -45,6 +45,7 @@ const App = () => {
 							</Route>
 						</Switch>
 					</div>
+					<OnlineUsers/>
 				</BrowserRouter>
 			)}
 		</div>

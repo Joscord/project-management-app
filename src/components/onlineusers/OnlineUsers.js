@@ -11,7 +11,7 @@ const OnlineUsers = () => {
 		<div className='user-list'>
 			<h2>All Users</h2>
             {error && <div className='error'>{error}</div>}
-            {documents && documents.map(user => (
+            {users && users.map(user => (
                 <div key={user.id} className='user-list-item'>
                     <span>{user.displayName}</span>
                     <Avatar src={user.photoURL}/>
