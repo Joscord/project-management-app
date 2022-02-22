@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useCollection } from '../../hooks/useCollection';
+import { useAuthContext } from '../../hooks/useAuthContext';
+import { useFirestore } from '../../hooks/useFirestore'; 
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import Select from 'react-select';
 import './Create.css';
+import { timestamp } from '../../firebase/config';
 
 const categories = [
 	{
@@ -29,8 +33,12 @@ const Create = () => {
 	const [assignedUsers, setAssignedUsers] = useState([]);
 	const [users, setUsers] = useState([]);
 	const { documents, error } = useCollection('users');
-	// Crearemos una nueva pieza de estado para manejar el error del formulario
 	const [formError, setFormError] = useState(null);
+	const { user } = useAuthContext();  
+	// Del hook useFirestore destructuramos los elementos que necesitamos
+	const { addDocument, response } = useFirestore('projects');
+	// Obtenemos el objeto de historial del hook useHistory
+	const history = useHistory();
 
 
 	useEffect(() => {
@@ -44,21 +52,49 @@ const Create = () => {
 			setUsers(options);
 		}
 	}, [documents]);
-
-	const handleSubmit = e => {
+	// Debemos hacer que esto proceso sea asíncrono para poder esperar a que el documento sea añadido
+	const handleSubmit = async e => {
 		e.preventDefault();
-		// Reseteamos el error del formulario cada vez que intentamos enviar el formulario
 		setFormError(null);
-		// Podemos revisar si category y assignedUsers tienen valor
 		if (!category) {
 			setFormError('Please select a catefory for the project');
 			return;
 		}
-		// Como un arreglo vacío es un valor truthy debemos hacer el check diferente a category
 		if (assignedUsers.length < 1) {
 			setFormError('Please assign at least one user to the project');
 			return;
 		}
+
+		const createdBy = {
+			displayName: user.displayName,
+			photoURL: user.photoURL,
+			id: user.uid
+		}
+
+		const assignedUsersList = assignedUsers.map(user => {
+			return {
+				displayName: user.value.displayName,
+				photoURL: user.value.photoURL,
+				id: user.value.id
+			}
+		})
+
+		const project = {
+			name, 
+			details,
+			dueDate: timestamp.fromDate(new Date(dueDate)),
+			category: category.value,
+			comments: [],
+			createdBy,
+			assignedUsersList,
+		}
+		// Usamos la función para añadir nuevos documentos de useFirestore
+		await addDocument(project);
+		// Redirigiremos al dashboard sí es que se añadió el proyecto exitosamente, para eso usaremos la respuesta que obtenemos del hook
+		if (!response.error) {
+			history.push('/');
+		}
+
 	};
 
 	return (
