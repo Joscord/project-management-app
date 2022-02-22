@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useCollection } from '../../hooks/useCollection';
 import Select from 'react-select';
 import './Create.css';
 
-// Los tag de <option value='lorem' label 'lorem'> lucen así. CUando usamos select creamos un arreglo con las opciones, un arreglo de objetos, con las propiedades value y label. Luego simplemente pasamos este arreglo. También hay una diferencia en la función que maneja el estado ya que no recibe el evento como parámetro sino que la opción seleccionada.
 const categories = [
 	{
 		value: 'development', label: 'Development'
@@ -23,6 +23,23 @@ const Create = () => {
 	const [dueDate, setDueDate] = useState('');
 	const [category, setCategory] = useState('');
 	const [assignedUsers, setAssignedUsers] = useState([]);
+	// Creamos una nueva pieza de estado para los usuarios de la colección
+	const [users, setUsers] = useState([]);
+	// Primero vamos a obtener todos los usuarios con useCollection.
+	const {documents, error} = useCollection('users');
+	// Usamos useEffect para escuchar cambios en la colección y actualizar así nuestras opciones. Primero debemos evaluar si hay o no documentos. Si hay documentos entonces se ejecuta el código dentro de if donde básicamente hacemos map al arreglo de documentos para obtener un nuevo arreglo con el formato que necesitamos para las opciones de select.
+	useEffect(() => {
+		if (documents) {
+			const options = documents.map(user => {
+				return {
+					value: user,
+					label: user.displayName
+				}
+			})
+			// Actualizamos el estado
+			setUsers(options);
+		}
+	},[documents]);
 
 	const handleSubmit = e => {
 		e.preventDefault();
@@ -52,7 +69,9 @@ const Create = () => {
 				/>
 			</label>
 			<label>
-				<span>Assigned To:</span>
+				<span>Assign To:</span>
+				{/* Añadiendo la propiedad isMulti podemos seleccionar más de una opción, además nos da la opción de eliminar un usuario ya seleccionado */}
+				<Select options={users} onChange={option => setAssignedUsers(option)} isMulti/>
 			</label>
 			<button className='btn'>Add Project</button>
 		</form>
