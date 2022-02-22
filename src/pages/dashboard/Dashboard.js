@@ -1,4 +1,5 @@
 import React from 'react';
+import { ProjectList } from '../../components/projectlist/ProjectList';
 import { useCollection } from '../../hooks/useCollection';
 import './Dashboard.css';
 
@@ -10,9 +11,7 @@ const Dashboard = () => {
 		<div>
 			<h2 className='page-title'></h2>
 			{error && <p className='error'>{error}</p>}
-			{projects && projects.map(project => (
-				<p key={project.id}>{project.name}</p>
-			))}
+			{projects && <ProjectList projects={projects}/>}
 		</div>
 	);
 };
