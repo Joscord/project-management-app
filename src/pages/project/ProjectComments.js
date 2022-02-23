@@ -21,11 +21,9 @@ export const ProjectComments = ({ project }) => {
 			createdAt: timestamp.fromDate(new Date()),
 			id: Math.random(),
 		};
-		// Usamos await para esperar a que se actualice el documento. Nótese que cuando actualizamos el documento lo hacemos tomando en consideración los comentarios que ya existen (por eso usamos ...project.comments) y luego añadimos el nuevo). Recordemos también que la función updateDocument recibe como. También cabe recordar que sólo actualizamos los comentarios y las demás propiedad o campos del documento permanecen intactos
 		await updateDocument(project.id, {
 			comments: [...project.comments, commentToAdd]
 		});
-        // Luego de añadir el comentario queremos resetear el estado de NewComment, así también se actualiza la caja donde escribimos los comentarios. Primero hacemos una revisión del error (esto viene en nuestro objeto de respuesta) y si no hay error entonces actualizamos el estado
         if (!response.error) {
             setNewComment('');
         }
