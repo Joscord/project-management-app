@@ -18,12 +18,12 @@ export const useDocument = (collection, id) => {
             // Actualizamos el estado del documento en base al snapshot. Recordar que usamos el método data() sobre una referencia para obtener la información del documento. Nótese que también pasamos el id. El id no viene de data() sino que es un valor del snapshot en sí. Recordemos también que si hay un error, es el segundo argumento de onSnapshot, donde podemos definir una función para manejarlo
             setDocument({
                 ...snapshot.data(), id: snapshot.id
-            }, err => {
-                setError(err.message);
-            });
-            // Reseteamos el error
-            setError(null);
-        })
+            })
+        }, err => {
+            setError(err.message);
+        });
+        // Reseteamos el error
+        setError(null)
 
         // Necesitamos también retornar una función de cleanup para desuscribirnos de onSnapshot si es que se desmonta el componente en que es usado. El método onSnapshot nos retorna un método para desuscribirnos
         return () => {
