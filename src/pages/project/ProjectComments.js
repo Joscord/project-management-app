@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { timestamp } from '../../firebase/config';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { useFirestore } from '../../hooks/useFirestore';
+import { CommentList } from './CommentList';
 
 // Podemos pasar el proyecto en sí desde Project como prop y utilizarlo en este componente
 export const ProjectComments = ({ project }) => {
@@ -32,7 +33,7 @@ export const ProjectComments = ({ project }) => {
 	return (
 		<div className='project-comments'>
 			<h4>Comments</h4>
-
+            <CommentList project={project}/>
 			<form className='add-comment' onSubmit={handleSubmit}>
 				<label>
 					<span>Add New Comment:</span>
