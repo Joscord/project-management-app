@@ -7,14 +7,11 @@ import './Project.css';
 
 const Project = () => {
 	const { id } = useParams();
-	// Con este id podemos obtener un documento en específico usando nuestro custom hook useDocument
 	const { document: project, error } = useDocument('projects', id);	
-	// Mostramos una forma alternativa de enseñar un template de error
 	if (error) {
 		return <div className='error'>{error}</div>
 	};
-	// De la misma forma que para el error podemos mostrar un mensaje de carga
-	if (!document) {
+	if (!project) {
 		return <div className='loading'>Loading...</div>
 	}
 	return (
