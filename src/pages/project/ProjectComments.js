@@ -7,6 +7,7 @@ export const ProjectComments = () => {
     const [newComment, setNewComment] = useState('');
     const { user } = useAuthContext();
     const { photoURL, displayName} = user;  
+
     const handleSubmit = async e => {
         e.preventDefault();
         // Creamos una constante para representar el comentario que deseamos añadir
@@ -23,7 +24,7 @@ export const ProjectComments = () => {
     <div className='project-comments'>
         <h4>Comments</h4>
 
-        <form className='add-comment' onSubumit={handleSubmit}>
+        <form className='add-comment' onSubmit={handleSubmit}>
             <label>
                 <span>Add New Comment:</span>
                 <textarea required onChange={e => setNewComment(e.target.value)} value={newComment}/>
