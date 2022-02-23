@@ -19,8 +19,8 @@ const Project = () => {
 	}
 	return (
 		<div className='project-details'>
-			<h1>{document.name}</h1>
-			
+			<h1>{project.name}</h1>
+
 		</div>
 	)
 
