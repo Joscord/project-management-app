@@ -3,12 +3,16 @@ import Avatar from '../../components/avatar/Avatar';
 // importamos useFirestore para poder usar la función de borrar documentos
 import { useFirestore } from '../../hooks/useFirestore';
 import { useAuthContext } from '../../hooks/useAuthContext';
+import { useHistory } from 'react-router-dom';
 
 export const ProjectSummary = ({ project }) => {
 	const { deleteDocument } = useFirestore('projects');
     const { user } = useAuthContext(); 
+    const history = useHistory();  
+    // Nótese que no es necesario que esto sea asíncrono para la redirección, no es necesario esperars  
     const handleClick = e => {
         deleteDocument(project.id); 
+        history.push('/');
     }
     // Para ocultar el botón recordemos que el proyecto tiene una propiedad createdBy, dentro de esta está el id y podemos compararla con el id de la persona logueada
 	return (
