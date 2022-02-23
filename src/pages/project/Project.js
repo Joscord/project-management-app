@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { useDocument } from '../../hooks/useDocument';
 
 import './Project.css';
+import { ProjectComments } from './ProjectComments';
 import { ProjectSummary } from './ProjectSummary';
 
 const Project = () => {
@@ -18,6 +19,7 @@ const Project = () => {
 	return (
 		<div className='project-details'>
 			<ProjectSummary project={project}/>
+			<ProjectComments/>
 		</div>
 	)
 
