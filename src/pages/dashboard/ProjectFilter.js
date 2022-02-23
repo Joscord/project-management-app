@@ -3,7 +3,6 @@ const filterList = ['all', 'design', 'mine', 'development', 'marketing', 'sales'
 export const ProjectFilter = ({currentFilter, changeFilter}) => {
 
     const handleClick = filter => {
-        // Actualizamos el estado del filtro
         changeFilter(filter);
     }   
     return (
