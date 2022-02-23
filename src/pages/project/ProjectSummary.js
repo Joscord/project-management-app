@@ -14,11 +14,13 @@ export const ProjectSummary = ({project}) => {
             {project.details}
         </p>
         <h4>Project is assigned to:</h4>
-        {project.assignedUsersList.map(user => (
-            <div key={user.id}>
-                <Avatar src={user.photoURL}/>
-            </div>
-        ))}
+        <div className='assigned-users'>
+            {project.assignedUsersList.map(user => (
+                <div key={user.id}>
+                    <Avatar src={user.photoURL}/>
+                </div>
+            ))}
+        </div>
     </div>
   )
 }
