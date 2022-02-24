@@ -1,5 +1,4 @@
 import './OnlineUsers.css';
-// Importamos el hook useCollection para obtener la colección de usuarios
 import { useCollection } from '../../hooks/useCollection';
 import Avatar from '../avatar/Avatar';
 

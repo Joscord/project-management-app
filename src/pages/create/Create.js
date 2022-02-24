@@ -35,9 +35,7 @@ const Create = () => {
 	const { documents, error } = useCollection('users');
 	const [formError, setFormError] = useState(null);
 	const { user } = useAuthContext();  
-	// Del hook useFirestore destructuramos los elementos que necesitamos
 	const { addDocument, response } = useFirestore('projects');
-	// Obtenemos el objeto de historial del hook useHistory
 	const history = useHistory();
 
 
@@ -52,7 +50,6 @@ const Create = () => {
 			setUsers(options);
 		}
 	}, [documents]);
-	// Debemos hacer que esto proceso sea asíncrono para poder esperar a que el documento sea añadido
 	const handleSubmit = async e => {
 		e.preventDefault();
 		setFormError(null);
@@ -88,9 +85,7 @@ const Create = () => {
 			createdBy,
 			assignedUsersList,
 		}
-		// Usamos la función para añadir nuevos documentos de useFirestore
 		await addDocument(project);
-		// Redirigiremos al dashboard sí es que se añadió el proyecto exitosamente, para eso usaremos la respuesta que obtenemos del hook
 		if (!response.error) {
 			history.push('/');
 		}

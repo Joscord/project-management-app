@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-// importamos el servicio de Firestore
 import { projectAuth, projectFirestore } from '../firebase/config'
 import { useAuthContext } from './useAuthContext'
 

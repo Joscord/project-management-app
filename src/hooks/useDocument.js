@@ -9,7 +9,6 @@ export const useDocument = (collection, id) => {
         const ref = projectFirestore.collection(collection).doc(id)
 
         const unsuscribe = ref.onSnapshot(snapshot => {
-            // Hacemos un checkeo del snapshot, si hay data actualizamos la del documento y si no hay data actualizamos el estado del error
             if (snapshot.data()) {
                 setDocument({
                     ...snapshot.data(), id: snapshot.id

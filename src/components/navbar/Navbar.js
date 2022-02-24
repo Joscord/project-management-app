@@ -7,7 +7,6 @@ import { useAuthContext } from '../../hooks/useAuthContext';
 
 const Navbar = () => {
 	const { logout, isPending } = useLogout();
-	// Destructuramos el usuario de nuestro contexto
 	const { user } = useAuthContext();
 
 	return (

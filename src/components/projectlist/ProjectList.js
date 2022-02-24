@@ -1,11 +1,8 @@
 import React from 'react';
-// Importamos Avatar
 import Avatar from '../avatar/Avatar'
-// Importamos Link de react-router-dom
 import { Link } from 'react-router-dom';
 import './ProjectList.css';
 
-// Hay que transformar el timestamp de Firebase a una fecha y esa fecha a un string
 export const ProjectList = ({projects}) => {
 	return (
 		<div className='project-list'>

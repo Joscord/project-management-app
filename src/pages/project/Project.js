@@ -1,6 +1,4 @@
-// Necesitamos usar useParams para obtener el id desde la URL
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
-// importamos useDocument
 import { useDocument } from '../../hooks/useDocument';
 
 import './Project.css';
